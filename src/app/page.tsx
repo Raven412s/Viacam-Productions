@@ -5,10 +5,11 @@ import Parallax from '@/components/SmoothParallaxScroll/index';
 import Lenis from '@studio-freight/lenis';
 import { useEffect, useState } from 'react';
 import PreLoader from '@/components/global/Preloader';
+import Teams from '@/components/global/Teams';
 import Hero from '@/components/global/animated/Hero';
 import CardAnimation from '@/components/global/card-animation/CardAnimation';
 const Home = () => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         const lenis = new Lenis();
         // Animation frame callback
@@ -39,6 +40,7 @@ const Home = () => {
         <Parallax/>
         <CardParallax />
         <CardAnimation/>
+        <Teams/>
       </main>
     )}
   </>

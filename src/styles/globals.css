@@ -15,6 +15,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
   background-color: #131415;
+
 }
 
 @layer utilities {
@@ -109,7 +110,7 @@ body {
   body{
     margin: 0px;
     font-family: 'Body';
-    margin-bottom: 100vh;
+    /* margin-bottom: 100vh; */
   }
 
   h2{
