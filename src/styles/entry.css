@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@keyframes slideOutAndIn {
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+
+
+  .letters {
+    transform: translateY(-100%);
+    display: inline-block;
+    position: relative;
+    animation: slideOutAndIn 2s ease-in-out forwards;
+    font-size: 22vw;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    line-height: normal;
+    opacity: 0;
+  }
+
+  /* Add delays to each letter */
+  .l1 {
+    animation-delay: 0ms;
+  }
+  .l2 {
+    font-size: 15.6vw;
+    font-weight: 600;
+    animation-delay: 150ms;
+    margin-bottom: 1.4rem;
+  }
+  .l3 {
+    animation-delay: 300ms;
+  }
+  .l4 {
+    animation-delay: 450ms;
+  }
+  .l5 {
+    animation-delay: 600ms;
+  }
+  .l6 {
+    animation-delay: 750ms;
+  }
+  .l7 {
+    animation-delay: 900ms;
+}
+.l8 {
+  animation-delay: 1050ms;
+}
+.l9 {
+  animation-delay: 1200ms;
+}
+
+.square{
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.i001{
+    animation-name: bounce;
+    border-radius: 50%;
+}
+.i002{
+    animation-name: rotate;
+}
+.i003{
+    animation-name: scale;
+}
+.i004{
+    animation-name: slide;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(100px); }
+    50% { transform: translateY(250px); }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); border-radius: 10%;}
+    to { transform: rotate(360deg); border-radius: 50%;}
+  }
+
+  @keyframes scale {
+    0%, 100% { transform: scale(1); border-radius: 15px; }
+    50% { transform: scale(1.5); border-radius: 50%; }
+  }
+
+  @keyframes slide {
+from{transform: translateX(0px); border-radius: 0%;}
+to{transform: translateX(-100px); border-radius: 50%;}
+  }
