@@ -8,51 +8,48 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function CardAnimation() {
-  const containerRef = useRef(null);
-  const cardRefs = useRef([]);
+interface CardAnimationProps {}
 
-  const border   = [
-    "e9edc9",
-    "f07167",
-    "52b788",
-    "fad643"
-  ]
+const CardAnimation: React.FC<CardAnimationProps> = () => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const borderColors = ['e9edc9', 'f07167', '52b788', 'fad643'];
 
   const backTexts = [
-    <div className="size-full p-4 flex flex-col gap-20 items-center z-10">
-      <p className='text-3xl text-center '>Lite <br /> ₹15000</p>
-      <p className='text-[0.9rem] '>
+    <div className="size-full p-4 flex flex-col gap-20 items-center z-10" key="1">
+      <p className="text-3xl text-center">Lite <br /> ₹15000</p>
+      <p className="text-[0.9rem]">
         &#10003;&nbsp;Social Media Marketing <br />
-        &#10003;&nbsp;Instagram and Facebook <br />&nbsp;&nbsp;&nbsp;&nbsp; Handling Posts and Reels <br />
+        &#10003;&nbsp;Instagram and Facebook <br />&nbsp;&nbsp;&nbsp;&nbsp;Handling Posts and Reels <br />
         &#10003;&nbsp;Basic Site analytics <br />
         &#10003;&nbsp;4 Reels/Month, 30 Posts/Month
       </p>
     </div>,
-    <div className="size-full p-4 flex flex-col gap-20 items-center z-10">
-      <p className='text-3xl text-center '>Core <br /> ₹25000 </p>
-      <p className='text-[0.9rem] '>
-       &#10003;&nbsp; Social Media Marketing <br />
-       &#10003;&nbsp;Instagram and Facebook <br />&nbsp;&nbsp;&nbsp;&nbsp; Handling Posts and Reels <br />
-       &#10003;&nbsp; Standard Site analytics <br />
-       &#10003;&nbsp; 8 Reels/Month, 60 Posts/Month
+    <div className="size-full p-4 flex flex-col gap-20 items-center z-10" key="2">
+      <p className="text-3xl text-center">Core <br /> ₹25000</p>
+      <p className="text-[0.9rem]">
+        &#10003;&nbsp;Social Media Marketing <br />
+        &#10003;&nbsp;Instagram and Facebook <br />&nbsp;&nbsp;&nbsp;&nbsp;Handling Posts and Reels <br />
+        &#10003;&nbsp;Standard Site analytics <br />
+        &#10003;&nbsp;8 Reels/Month, 60 Posts/Month
       </p>
     </div>,
-    <div className="size-full p-4 flex flex-col gap-20 items-center z-10">
-      <p className='text-3xl text-center '>Business <br /> ₹35000</p>
-      <p className='text-[0.9rem] '>
-      &#10003;&nbsp;Social Media Marketing <br />
-        &#10003;&nbsp;Instagram and Facebook <br />&nbsp;&nbsp;&nbsp;&nbsp; Handling Posts and Reels <br />
+    <div className="size-full p-4 flex flex-col gap-20 items-center z-10" key="3">
+      <p className="text-3xl text-center">Business <br /> ₹35000</p>
+      <p className="text-[0.9rem]">
+        &#10003;&nbsp;Social Media Marketing <br />
+        &#10003;&nbsp;Instagram and Facebook <br />&nbsp;&nbsp;&nbsp;&nbsp;Handling Posts and Reels <br />
         &#10003;&nbsp;Standard Site analytics <br />
         &#10003;&nbsp;8 Reels/Month, 60 Posts/Month <br />
         &#10003;&nbsp;Digital Marketing
       </p>
     </div>,
-    <div className="size-full p-4 flex flex-col gap-20 items-center z-10">
-      <p className='text-3xl text-center '>Production <br /> ₹55000</p>
-      <p className='text-[0.9rem] '>
+    <div className="size-full p-4 flex flex-col gap-20 items-center z-10" key="4">
+      <p className="text-3xl text-center">Production <br /> ₹55000</p>
+      <p className="text-[0.9rem]">
         &#10003;&nbsp;Social Media Marketing <br />
-        &#10003;&nbsp;Instagram and Facebook <br />&nbsp;&nbsp;&nbsp;&nbsp; Handling Posts and Reels <br />
+        &#10003;&nbsp;Instagram and Facebook <br />&nbsp;&nbsp;&nbsp;&nbsp;Handling Posts and Reels <br />
         &#10003;&nbsp;Standard Site analytics <br />
         &#10003;&nbsp;8 Reels/Month, 60 Posts/Month <br />
         &#10003;&nbsp;Digital Marketing
@@ -60,32 +57,33 @@ export default function CardAnimation() {
     </div>,
   ];
 
-
   useGSAP(() => {
     const cards = cardRefs.current;
     const totalScrollHeight = window.innerHeight * 3;
     const position = [14, 38, 62, 86];
     const rotation = [-15, -7.5, 7.5, 15];
-    const animationCompleteText = containerRef.current.querySelector("h1");
+    const animationCompleteText = containerRef.current?.querySelector("h1");
 
     // Cards spread animation
     ScrollTrigger.create({
-      trigger: containerRef.current.querySelector("#cards"),
+      trigger: containerRef.current?.querySelector("#cards"),
       start: "top top",
-      end: () => `+=${totalScrollHeight}`,
+      end: `+=${totalScrollHeight}`,
       pin: true,
       pinSpacing: true,
     });
 
     cards.forEach((card, index) => {
+      if (!card) return;
+
       gsap.to(card, {
         left: `${position[index]}%`,
         rotate: `${rotation[index]}`,
         ease: "none",
         scrollTrigger: {
-          trigger: containerRef.current.querySelector("#cards"),
+          trigger: containerRef.current?.querySelector("#cards"),
           start: "top top",
-          end: () => `+=${window.innerHeight}`,
+          end: `+=${window.innerHeight}`,
           scrub: 0.5,
           id: `spread-${index}`,
         },
@@ -94,6 +92,7 @@ export default function CardAnimation() {
 
     // Cards flip animation
     cards.forEach((card, index) => {
+      if (!card) return;
       const frontEl = card.querySelector(".flip-card-front");
       const backEl = card.querySelector(".flip-card-back");
       const staggerOffset = index * 0.05;
@@ -101,9 +100,9 @@ export default function CardAnimation() {
       const endOffset = 2 / 3 + staggerOffset;
 
       ScrollTrigger.create({
-        trigger: containerRef.current.querySelector("#cards"),
+        trigger: containerRef.current?.querySelector("#cards"),
         start: "top top",
-        end: () => `+=${totalScrollHeight}`,
+        end: `+=${totalScrollHeight}`,
         scrub: 1,
         id: `rotate-flip-${index}`,
         onUpdate: (self) => {
@@ -124,9 +123,10 @@ export default function CardAnimation() {
             });
           }
 
-          // Adjust opacity of the "Animation Complete!" text
-          const opacityProgress = Math.max(0, (self.progress - 2 / 3) * 3);
-          gsap.to(animationCompleteText, { opacity: opacityProgress });
+          if (animationCompleteText) {
+            const opacityProgress = Math.max(0, (self.progress - 2 / 3) * 3);
+            gsap.to(animationCompleteText, { opacity: opacityProgress });
+          }
         },
       });
     });
@@ -139,36 +139,36 @@ export default function CardAnimation() {
   }, []);
 
   return (
-    <main id='CardAnimation' ref={containerRef}>
-      <section id="cards"  className='relative' >
+    <main id="CardAnimation" ref={containerRef}>
+      <section id="cards" className="relative">
         {[...Array(4)].map((_, index) => (
           <AnimatedCard
             key={index}
             id={`card-${index + 1}`}
-            frontSrc={`/images/card-light.png`}
-            frontAlt={`Card Image`}
+            frontSrc="/images/card-light.png"
+            frontAlt="Card Image"
             backText={backTexts[index]}
-            border  ={`#${border[index]}`}
+            border={`#${borderColors[index]}`}
             ref={(elem) => (cardRefs.current[index] = elem)}
           />
         ))}
-<h1 className="text-6xl special-font text-center absolute bottom-[3vh] left-1/2 -translate-x-1/2 opacity-0">
-  {Array.from("Special Pricing Only For You!").map((char, index) => (
-    <span
-      key={index}
-      className="inline-block relative"
-      style={{
-        animation: `floating 3s infinite ease-in-out`,
-        animationDelay: `${index * 0.1}s`, // Staggered delay
-      }}
-    >
-      {char === " " ? "\u00A0" : char}
-    </span>
-  ))}
-</h1>
-
-
+        <h1 className="text-6xl special-font text-center absolute bottom-[3vh] left-1/2 -translate-x-1/2 opacity-0">
+          {Array.from("Special Pricing Only For You!").map((char, index) => (
+            <span
+              key={index}
+              className="inline-block relative"
+              style={{
+                animation: `floating 3s infinite ease-in-out`,
+                animationDelay: `${index * 0.1}s`, // Staggered delay
+              }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
+        </h1>
       </section>
     </main>
   );
-}
+};
+
+export default CardAnimation;

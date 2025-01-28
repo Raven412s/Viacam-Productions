@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/models/camera.tsx", "src/components/global/card-animation/CardAnimation.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/models/camera.tsx", "src/components/global/card-animation/CardAnimation.tsx"],
   "exclude": ["node_modules"]
 }

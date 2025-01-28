@@ -1,13 +1,12 @@
 "use client"
-import Scene from '@/components/models/camera';
+import Hero from '@/components/global/animated/Hero';
+import CardAnimation from '@/components/global/card-animation/CardAnimation';
 import CardParallax from '@/components/global/CardParalax/CardParalax';
+import PreLoader from '@/components/global/Preloader';
+import Teams from '@/components/global/Teams';
 import Parallax from '@/components/SmoothParallaxScroll/index';
 import Lenis from '@studio-freight/lenis';
 import { useEffect, useState } from 'react';
-import PreLoader from '@/components/global/Preloader';
-import Teams from '@/components/global/Teams';
-import Hero from '@/components/global/animated/Hero';
-import CardAnimation from '@/components/global/card-animation/CardAnimation';
 const Home = () => {
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {

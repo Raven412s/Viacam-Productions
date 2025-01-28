@@ -1,13 +1,17 @@
-//Animation Component
 'use client';
+
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
-export default function AnimatedText({ phrase }) {
-  const refs = useRef([]); // Array to store references to letters
+interface AnimatedTextProps {
+  phrase: string;
+}
+
+export default function AnimatedText({ phrase }: AnimatedTextProps) {
+  const refs = useRef<HTMLSpanElement[]>([]); // Array to store references to letters
 
   // Function to split words into `p` elements containing letters
-  const splitWords = (phrase) => {
+  const splitWords = (phrase: string) => {
     refs.current = []; // Clear refs on every render to avoid duplicates
     return phrase.split(' ').map((word, wordIndex) => (
       <p
@@ -20,12 +24,14 @@ export default function AnimatedText({ phrase }) {
   };
 
   // Function to split letters into `span` elements
-  const splitLetters = (word) => {
+  const splitLetters = (word: string) => {
     return word.split('').map((letter, letterIndex) => (
       <span
         className="opacity-20"
         key={`letter_${letterIndex}`}
-        ref={(el) => refs.current.push(el)}
+        ref={(el) => {
+          if (el) refs.current.push(el);
+        }}
       >
         {letter}
       </span>
@@ -51,12 +57,8 @@ export default function AnimatedText({ phrase }) {
   }, []);
 
   return (
-    <main
-      className="flex items-end justify-center bg-transparent text-gray-900"
-    >
-      <div className="w-full flex flex-wrap">
-        {splitWords(phrase)}
-      </div>
+    <main className="flex items-end justify-center bg-transparent text-gray-900">
+      <div className="w-full flex flex-wrap">{splitWords(phrase)}</div>
     </main>
   );
 }
