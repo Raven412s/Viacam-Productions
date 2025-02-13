@@ -11,13 +11,7 @@
     src: url('/fonts/NeueMontreal_Medium.otf');
   }
 
-  html{
-    font-family: var(--font-nunito-sans);
-  }
 
-  .show{
-    font-family:  var(--font-nunito);
-  }
 body {
   overflow: hidden;
   }

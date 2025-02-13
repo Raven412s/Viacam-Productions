@@ -7,7 +7,7 @@ const Home = () => {
     <>
     <Navbar/>
     <Bounded>
-        <div className="flex bg-purple-950 items-center justify-center h-full w-full">VIACAM PRODUCTIONS</div>
+        <div className="flex bg-purple-400 font-display text-8xl  items-center justify-center h-full w-full">VIACAM PRODUCTIONS</div>
     </Bounded>
     </>
   )

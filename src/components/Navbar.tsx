@@ -11,8 +11,8 @@ const Navbar = (props: Props) => {
         <div className=" absolute top-3 md:top-0 left-1/2 -translate-x-1/2 flex gap-2 md:gap-5 items-end justify-center bg-background">
         <Logo width={40} height={40}/>
         <div className='flex w-fit items-center bg-background flex-col'>
-            <h1 className="show min-w-max text-lg md:text-2xl">Viacam Productions</h1>
-            <p className='text-[12px] text-muted-foreground'>Igniting Vision With Innovation</p>
+            <h1 className="font-display min-w-max text-lg md:text-2xl">Viacam Productions</h1>
+            <p className='font-display text-[12px] md:text-xs text-muted-foreground'>Igniting Vision With Innovation</p>
         </div>
         </div>
         <div>contact </div>
