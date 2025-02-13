@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
 }
 
 const ScreenDisectReaveal = ({centerPage}) => {
-    console.log(centerPage)
+    
   useEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
